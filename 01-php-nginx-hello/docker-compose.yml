@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  php:
+    build: ./php
+    expose:
+      - "9000"
+    volumes:
+      - ./app:/var/www/html
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    volumes:
+      - ./app:/var/www/html
+      - ./nginx/default:/etc/nginx/sites-enabled/default
+

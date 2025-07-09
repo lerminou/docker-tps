@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  php:
+    build: ./php
+    working_dir: /var/www/html
+    volumes:
+      - ./symfony:/var/www/html
+    expose:
+      - "9000"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    volumes:
+      - ./symfony:/var/www/html
+      - ./nginx/default:/etc/nginx/sites-available/default
+
+volumes:
+  db-data:
