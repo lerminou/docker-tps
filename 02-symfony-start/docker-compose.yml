@@ -5,7 +5,7 @@ services:
     build: ./php
     working_dir: /var/www/html
     volumes:
-      - ./symfony:/var/www/html
+      - ./php/symfony:/var/www/html
     expose:
       - "9000"
 
@@ -16,7 +16,7 @@ services:
     depends_on:
       - php
     volumes:
-      - ./symfony:/var/www/html
+      - ./php/symfony:/var/www/html
       - ./nginx/default:/etc/nginx/sites-available/default
 
 volumes:
